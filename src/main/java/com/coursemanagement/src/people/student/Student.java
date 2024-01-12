@@ -1,12 +1,12 @@
-package com.coursemanagement.src.people.teacher;
+package com.coursemanagement.src.people.student;
 
 import com.coursemanagement.src.people.Person;
 
 import java.util.List;
 
-public class teacher extends Person {
+public class Student extends Person {
 
-    protected teacher(String name) {
+    public Student(String name) {
         super(name);
     }
 
