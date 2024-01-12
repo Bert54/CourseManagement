@@ -1,11 +1,14 @@
 package com.coursemanagement.src.manager.PeopleManager;
 
 import com.coursemanagement.src.people.Person;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
+@ApplicationScoped
 public class PeopleManagerList implements PeopleManager {
 
     private final List<Person> registeredPeople;
@@ -14,6 +17,18 @@ public class PeopleManagerList implements PeopleManager {
     }
 
     public void addPerson(Person person) throws Exception {
+        AtomicBoolean exists = new AtomicBoolean(false);
+
+        this.registeredPeople.forEach((currentPerson) -> {
+            if (currentPerson.getName().equals(person.getName())) {
+                exists.set(true);
+            }
+        });
+
+        if (exists.get()) {
+            throw new IllegalStateException(String.format("User with name '%s' already exists", person.getName()));
+        }
+
         this.registeredPeople.add(person);
     }
 
