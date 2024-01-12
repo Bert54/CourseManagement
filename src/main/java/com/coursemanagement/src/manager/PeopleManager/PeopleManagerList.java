@@ -13,7 +13,6 @@ public class PeopleManagerList implements PeopleManager {
         this.registeredPeople = new ArrayList<>();
     }
 
-    // TODO add exception so that if the person whose name is already present, then we throw one
     public void addPerson(Person person) throws Exception {
         this.registeredPeople.add(person);
     }
