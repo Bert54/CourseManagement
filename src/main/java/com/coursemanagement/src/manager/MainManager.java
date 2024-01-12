@@ -10,7 +10,6 @@ public class MainManager {
         this.peopleManager = peopleManager;
     }
 
-    // TODO add exception so that if the person whose name is already present, then we throw one
     public void addPerson(Person person) throws Exception {
         this.peopleManager.addPerson(person);
     }
