@@ -28,7 +28,7 @@ public class PeopleManagerList implements PeopleManager {
 
         Person fetchedPerson = fetchedPersonAtomic.get();
         if (fetchedPerson == null) {
-            throw new IllegalStateException("User with name '%s' was not found".formatted(name));
+            throw new IllegalStateException(String.format("User with name '%s' was not found", name));
         }
         return fetchedPerson;
     }

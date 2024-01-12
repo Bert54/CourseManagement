@@ -3,18 +3,18 @@ package com.coursemanagement;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import java.util.LinkedHashSet;
-import java.util.SequencedSet;
+
+import java.util.*;
 
 public class HelloWorldTest {
 
     @Test
     public void testUsingJavaNewFeature() {
 
-        SequencedSet<String> alphabet = new LinkedHashSet<>();
+        Queue<String> alphabet = new PriorityQueue<>();
 
         alphabet.add("A");
 
-        assertEquals("A", alphabet.getFirst());
+        assertEquals("A", alphabet.poll());
     }
 }
