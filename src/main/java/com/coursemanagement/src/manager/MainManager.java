@@ -6,6 +6,7 @@ import com.coursemanagement.src.manager.PeopleManager.PeopleManager;
 public class MainManager {
 
     private final PeopleManager peopleManager;
+
     public MainManager(PeopleManager peopleManager) {
         this.peopleManager = peopleManager;
     }
