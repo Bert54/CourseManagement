@@ -1,4 +1,4 @@
-package com.coursemanagement;
+package com.coursemanagement.entities;
 
 import static com.coursemanagement.src.entities.people.Person.NOID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,16 +11,18 @@ import org.junit.jupiter.api.Test;
 
 public class PersonTest {
 
-    Person person;
+    private static final String DEFAULT_NAME = "james";
+
+    private Person person;
 
     @BeforeEach
     void init() {
-        this.person = new Student("james");
+        this.person = new Student(DEFAULT_NAME);
     }
 
     @Test
-    @DisplayName("Test ID contraints")
-    void testIdConstraints() {
+    @DisplayName("Test Person.getId()")
+    void testId() {
 
         // Test default value
         assertEquals(NOID, this.person.getId());

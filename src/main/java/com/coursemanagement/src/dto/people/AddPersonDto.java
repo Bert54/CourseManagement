@@ -12,7 +12,7 @@ public record AddPersonDto(String name, String role) {
         );
     }
 
-    public Person toPersonEntity() throws Exception {
+    public Person toPersonEntity() throws IllegalArgumentException {
         return PersonRole.newPersonByRole(this);
     }
 
