@@ -30,8 +30,7 @@ public class PeopleController {
                     )
             );
         } catch (Exception e) {
-            return ResponseError.buildResponse(Response.Status.BAD_REQUEST, e
-            );
+            return ResponseError.buildResponse(Response.Status.BAD_REQUEST, e);
         }
     }
 
