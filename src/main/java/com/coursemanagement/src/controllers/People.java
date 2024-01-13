@@ -1,13 +1,15 @@
 package com.coursemanagement.src.controllers;
 
+import com.coursemanagement.src.controllers.responsebuilders.ResponseError;
+import com.coursemanagement.src.controllers.responsebuilders.ResponseOK;
+import com.coursemanagement.src.dto.people.AddPersonDto;
 import com.coursemanagement.src.manager.PeopleManager.PeopleManager;
-import com.coursemanagement.src.people.Person;
-import com.coursemanagement.src.people.student.Student;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.Response;
+
+import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("/people")
 public class People {
@@ -15,16 +17,23 @@ public class People {
     @Inject
     private PeopleManager peopleManager;
 
-
-    @GET
-    @Path("/add/{name}")
-    @Produces("text/plain")
-    public String add(@PathParam("name") String name) {
+    @POST
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
+    @RequestScoped
+    public Response add(AddPersonDto addPersonDto) {
         try {
-            this.peopleManager.addPerson(new Student(name));
-            return "OK";
+            return ResponseOK.buildResponse(
+                    Response.Status.CREATED,
+                    this.peopleManager.addPerson(
+                            addPersonDto.toPersonEntity()
+                    )
+            );
         } catch (Exception e) {
-            return "FAIL";
+            return ResponseError.buildResponse(
+                    Response.Status.BAD_REQUEST,
+                    e
+            );
         }
     }
 }

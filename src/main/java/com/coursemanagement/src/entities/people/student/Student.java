@@ -1,6 +1,6 @@
-package com.coursemanagement.src.people.student;
+package com.coursemanagement.src.entities.people.student;
 
-import com.coursemanagement.src.people.Person;
+import com.coursemanagement.src.entities.people.Person;
 
 import java.util.List;
 

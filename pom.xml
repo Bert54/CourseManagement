@@ -4,7 +4,7 @@
 
     <groupId>org.coursemanagement</groupId>
     <artifactId>CourseManagement</artifactId>
-    <version>0.0.0</version>
+    <version>0.0.1</version>
     <packaging>war</packaging>
 
     <name>CourseManagement</name>

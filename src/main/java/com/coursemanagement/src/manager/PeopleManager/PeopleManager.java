@@ -1,10 +1,10 @@
 package com.coursemanagement.src.manager.PeopleManager;
 
-import com.coursemanagement.src.people.Person;
+import com.coursemanagement.src.entities.people.Person;
 
 public interface PeopleManager {
 
-    void addPerson(Person person) throws Exception;
+    Person addPerson(Person person) throws Exception;
 
     Person getPerson(String name)  throws Exception;
 

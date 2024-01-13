@@ -2,12 +2,11 @@ package com.coursemanagement;
 
 import com.coursemanagement.src.manager.MainManager;
 import com.coursemanagement.src.manager.PeopleManager.PeopleManager;
-import com.coursemanagement.src.manager.PeopleManager.PeopleManagerFactory;
 import com.coursemanagement.src.manager.PeopleManager.PeopleManagerListFactory;
-import com.coursemanagement.src.people.Person;
-import com.coursemanagement.src.people.administrator.Administrator;
-import com.coursemanagement.src.people.student.Student;
-import com.coursemanagement.src.people.teacher.Teacher;
+import com.coursemanagement.src.entities.people.Person;
+import com.coursemanagement.src.entities.people.administrator.Administrator;
+import com.coursemanagement.src.entities.people.student.Student;
+import com.coursemanagement.src.entities.people.teacher.Teacher;
 
 public class Main {
 

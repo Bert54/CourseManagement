@@ -1,4 +1,4 @@
-package com.coursemanagement.src.people;
+package com.coursemanagement.src.entities.people;
 
 import java.util.List;
 

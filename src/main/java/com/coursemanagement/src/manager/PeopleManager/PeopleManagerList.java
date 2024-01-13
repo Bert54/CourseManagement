@@ -1,6 +1,6 @@
 package com.coursemanagement.src.manager.PeopleManager;
 
-import com.coursemanagement.src.people.Person;
+import com.coursemanagement.src.entities.people.Person;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class PeopleManagerList implements PeopleManager {
         this.registeredPeople = new ArrayList<>();
     }
 
-    public void addPerson(Person person) throws Exception {
+    public Person addPerson(Person person) throws Exception {
         AtomicBoolean exists = new AtomicBoolean(false);
 
         this.registeredPeople.forEach((currentPerson) -> {
@@ -30,6 +30,8 @@ public class PeopleManagerList implements PeopleManager {
         }
 
         this.registeredPeople.add(person);
+
+        return person;
     }
 
     public Person getPerson(String name) throws IllegalStateException {
