@@ -12,6 +12,7 @@ import jakarta.ws.rs.core.Response;
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("/people")
+@RequestScoped
 public class PeopleController {
 
     @Inject
@@ -20,20 +21,47 @@ public class PeopleController {
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    @RequestScoped
-    public Response add(AddPersonDto addPersonDto) {
+    public Response addPerson(AddPersonDto addPersonDto) {
         try {
             return ResponseOK.buildResponse(
                     Response.Status.CREATED,
                     this.peopleManager.addPerson(
-                            addPersonDto.toPersonEntity()
+                            addPersonDto.format().toPersonEntity()
                     )
             );
         } catch (Exception e) {
-            return ResponseError.buildResponse(
-                    Response.Status.BAD_REQUEST,
-                    e
+            return ResponseError.buildResponse(Response.Status.BAD_REQUEST, e
             );
+        }
+    }
+
+    @GET
+    @Produces(APPLICATION_JSON)
+    @Path("{id}")
+    public Response getPersonById(@PathParam("id") int id) {
+        try {
+            return ResponseOK.buildResponse(
+                    Response.Status.OK,
+                    this.peopleManager.getPersonById(id)
+            );
+        } catch (Exception e) {
+            return ResponseError.buildResponse(Response.Status.NOT_FOUND, e);
+        }
+    }
+
+    @GET
+    @Produces(APPLICATION_JSON)
+    @Path("/name/{name}")
+    public Response getPersonByName(@PathParam("name") String name) {
+        try {
+            return ResponseOK.buildResponse(
+                    Response.Status.OK,
+                    this.peopleManager.getPersonByName(
+                            name.toLowerCase()
+                    )
+            );
+        } catch (Exception e) {
+            return ResponseError.buildResponse(Response.Status.NOT_FOUND, e);
         }
     }
 }

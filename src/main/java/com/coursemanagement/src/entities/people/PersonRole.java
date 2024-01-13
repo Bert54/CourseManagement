@@ -9,10 +9,9 @@ public class PersonRole {
 
     public static Person newPersonByRole(AddPersonDto addPersonDto) throws IllegalArgumentException {
         String personName = addPersonDto.name();
-        String rawRole = addPersonDto.role().trim().toUpperCase();
 
         try {
-            PersonRoleEnum role = PersonRoleEnum.valueOf(rawRole);
+            PersonRoleEnum role = PersonRoleEnum.valueOf(addPersonDto.role());
 
             return switch (role) {
                 case STUDENT -> new Student(personName);
@@ -20,7 +19,7 @@ public class PersonRole {
                 case ADMINISTRATOR -> new Administrator(personName);
             };
         } catch ( IllegalArgumentException e) {
-            throw new IllegalArgumentException(String.format("Role '%s' is unknown", rawRole));
+            throw new IllegalArgumentException(String.format("Role '%s' is unknown", addPersonDto.role()));
         }
     }
 

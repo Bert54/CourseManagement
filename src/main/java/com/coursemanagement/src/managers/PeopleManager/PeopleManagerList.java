@@ -35,19 +35,37 @@ public class PeopleManagerList implements PeopleManager {
         return person;
     }
 
-    public Person getPerson(String name) throws IllegalStateException {
+    public Person getPersonByName(String name) throws IllegalStateException {
         AtomicReference<Person> fetchedPersonAtomic = new AtomicReference<>();
 
         this.registeredPeople.forEach((currentPerson) -> {
-            if (currentPerson.getName().equals(name) && fetchedPersonAtomic.get() == null) {
+            if (currentPerson.getName().toLowerCase().equals(name)
+                    && fetchedPersonAtomic.get() == null) {
                 fetchedPersonAtomic.set(currentPerson);
             }
         });
 
         Person fetchedPerson = fetchedPersonAtomic.get();
         if (fetchedPerson == null) {
-            throw new IllegalStateException(String.format("User with name '%s' was not found", name));
+            throw new IllegalStateException(
+                    String.format("User with name '%s' was not found", name)
+            );
         }
+        return fetchedPerson;
+    }
+
+    public Person getPersonById(int id) throws IllegalStateException {
+        Person fetchedPerson;
+
+        try {
+            fetchedPerson = this.registeredPeople.get(id);
+            if (fetchedPerson == null) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            throw new IllegalStateException(String.format("User with id '%d' was not found", id));
+        }
+
         return fetchedPerson;
     }
 

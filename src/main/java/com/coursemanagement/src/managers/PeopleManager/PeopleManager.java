@@ -6,6 +6,8 @@ public interface PeopleManager {
 
     Person addPerson(Person person) throws Exception;
 
-    Person getPerson(String name)  throws Exception;
+    Person getPersonByName(String name) throws Exception;
+
+    Person getPersonById(int id) throws Exception;
 
 }

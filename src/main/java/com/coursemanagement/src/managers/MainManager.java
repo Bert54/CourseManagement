@@ -16,7 +16,7 @@ public class MainManager {
     }
 
     public Person getPerson(String name) throws Exception {
-        return this.peopleManager.getPerson(name);
+        return this.peopleManager.getPersonByName(name);
     }
 
 }
