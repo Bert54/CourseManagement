@@ -1,7 +1,7 @@
-package com.coursemanagement.src.manager;
+package com.coursemanagement.src.managers;
 
-import com.coursemanagement.src.people.Person;
-import com.coursemanagement.src.manager.PeopleManager.PeopleManager;
+import com.coursemanagement.src.entities.people.Person;
+import com.coursemanagement.src.managers.PeopleManager.PeopleManager;
 
 public class MainManager {
 
@@ -16,7 +16,7 @@ public class MainManager {
     }
 
     public Person getPerson(String name) throws Exception {
-        return this.peopleManager.getPerson(name);
+        return this.peopleManager.getPersonByName(name);
     }
 
 }

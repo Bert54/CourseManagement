@@ -1,4 +1,4 @@
-package com.coursemanagement.src.manager.PeopleManager;
+package com.coursemanagement.src.managers.PeopleManager;
 
 public class PeopleManagerListFactory extends PeopleManagerFactory {
 
