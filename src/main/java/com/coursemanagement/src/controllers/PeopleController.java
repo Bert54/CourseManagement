@@ -3,7 +3,7 @@ package com.coursemanagement.src.controllers;
 import com.coursemanagement.src.controllers.responsebuilders.ResponseError;
 import com.coursemanagement.src.controllers.responsebuilders.ResponseOK;
 import com.coursemanagement.src.dto.people.AddPersonDto;
-import com.coursemanagement.src.manager.PeopleManager.PeopleManager;
+import com.coursemanagement.src.managers.PeopleManager.PeopleManager;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -12,7 +12,7 @@ import jakarta.ws.rs.core.Response;
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("/people")
-public class People {
+public class PeopleController {
 
     @Inject
     private PeopleManager peopleManager;

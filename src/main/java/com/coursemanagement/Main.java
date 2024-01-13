@@ -1,8 +1,8 @@
 package com.coursemanagement;
 
-import com.coursemanagement.src.manager.MainManager;
-import com.coursemanagement.src.manager.PeopleManager.PeopleManager;
-import com.coursemanagement.src.manager.PeopleManager.PeopleManagerListFactory;
+import com.coursemanagement.src.managers.MainManager;
+import com.coursemanagement.src.managers.PeopleManager.PeopleManager;
+import com.coursemanagement.src.managers.PeopleManager.PeopleManagerListFactory;
 import com.coursemanagement.src.entities.people.Person;
 import com.coursemanagement.src.entities.people.administrator.Administrator;
 import com.coursemanagement.src.entities.people.student.Student;

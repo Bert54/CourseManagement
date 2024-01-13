@@ -1,4 +1,4 @@
-package com.coursemanagement.src.manager.PeopleManager;
+package com.coursemanagement.src.managers.PeopleManager;
 
 import com.coursemanagement.src.entities.people.Person;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -16,7 +16,7 @@ public class PeopleManagerList implements PeopleManager {
         this.registeredPeople = new ArrayList<>();
     }
 
-    public Person addPerson(Person person) throws Exception {
+    public Person addPerson(Person person) throws IllegalStateException {
         AtomicBoolean exists = new AtomicBoolean(false);
 
         this.registeredPeople.forEach((currentPerson) -> {
@@ -29,6 +29,7 @@ public class PeopleManagerList implements PeopleManager {
             throw new IllegalStateException(String.format("User with name '%s' already exists", person.getName()));
         }
 
+        person.setId(this.registeredPeople.size());
         this.registeredPeople.add(person);
 
         return person;

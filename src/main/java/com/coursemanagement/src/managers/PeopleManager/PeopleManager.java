@@ -1,4 +1,4 @@
-package com.coursemanagement.src.manager.PeopleManager;
+package com.coursemanagement.src.managers.PeopleManager;
 
 import com.coursemanagement.src.entities.people.Person;
 
