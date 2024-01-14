@@ -1,27 +1,26 @@
 package com.coursemanagement.src.entities.people;
 
+import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "users")
-@DiscriminatorColumn(name = "role", discriminatorType = DiscriminatorType.STRING)
-public abstract class Person {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "role", discriminatorType = DiscriminatorType.INTEGER)
+public abstract class Person implements Serializable {
 
     public static final int NOID = -1;
 
     @Column
     @Id
-    @GeneratedValue
-    private int id = NOID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @Column
+    @Size(min = 1, max = 100)
+    @Column(unique = true, nullable = false)
     private String name;
-
-//    @Column
-//    @Enumerated(EnumType.STRING)
-//    protected PersonRoleEnum role;
 
     protected Person(String name) {
         this.name = name;

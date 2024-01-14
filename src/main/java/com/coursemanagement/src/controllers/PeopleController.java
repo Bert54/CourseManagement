@@ -21,7 +21,7 @@ public class PeopleController {
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public Response addPerson(AddPersonDto addPersonDto) {
+    public Response addPerson(AddPersonDto addPersonDto) throws Exception {
         try {
             return ResponseOK.buildResponse(
                     Response.Status.CREATED,

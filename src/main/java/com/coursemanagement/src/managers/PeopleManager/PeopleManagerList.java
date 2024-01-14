@@ -2,6 +2,7 @@ package com.coursemanagement.src.managers.PeopleManager;
 
 import com.coursemanagement.src.entities.people.Person;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Alternative;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 @ApplicationScoped
+@Alternative
 public class PeopleManagerList implements PeopleManager {
 
     private final List<Person> registeredPeople;

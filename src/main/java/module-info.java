@@ -4,4 +4,5 @@ module com.coursemanagement {
     requires jakarta.validation;
     requires jakarta.cdi;
     requires jakarta.persistence;
+    requires jakarta.transaction;
 }
