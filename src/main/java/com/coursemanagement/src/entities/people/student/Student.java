@@ -16,7 +16,6 @@ public class Student extends Person {
 
     public Student(String name) {
         super(name);
-        //this.role = PersonRoleEnum.STUDENT;
     }
 
     public Student() {

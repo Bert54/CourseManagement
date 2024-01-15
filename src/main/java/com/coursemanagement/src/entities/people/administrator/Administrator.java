@@ -12,7 +12,6 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("1")
 public class Administrator extends Person {
-
     public Administrator(String name) {
         super(name);
     }

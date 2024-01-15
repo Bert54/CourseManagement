@@ -1,5 +1,6 @@
 package com.coursemanagement.src.entities.people.teacher;
 
+import com.coursemanagement.src.data.Permissions;
 import com.coursemanagement.src.entities.people.Person;
 import com.coursemanagement.src.entities.people.PersonRoleEnum;
 import jakarta.persistence.DiscriminatorValue;
@@ -16,7 +17,6 @@ public class Teacher extends Person {
 
     public Teacher(String name) {
         super(name);
-        //this.role = PersonRoleEnum.TEACHER;
     }
 
     public Teacher() {
@@ -26,6 +26,8 @@ public class Teacher extends Person {
     @Override
     @Transient
     public List<String> getPermissions() {
-        return List.of("tmp_teacher");
+        return List.of(
+                Permissions.COURSE_CREATE
+        );
     }
 }
