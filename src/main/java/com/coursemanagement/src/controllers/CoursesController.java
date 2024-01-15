@@ -5,10 +5,7 @@ import com.coursemanagement.src.controllers.responsebuilders.ResponseError;
 import com.coursemanagement.src.controllers.responsebuilders.ResponseOK;
 import com.coursemanagement.src.data.Permissions;
 import com.coursemanagement.src.dto.courses.AddCourseDto;
-import com.coursemanagement.src.entities.people.Person;
-import com.coursemanagement.src.filters.UserInfo;
-import com.coursemanagement.src.managers.CourseManager.CourseManager;
-import com.coursemanagement.src.managers.PeopleManager.PeopleManager;
+import com.coursemanagement.src.services.courses.CoursesServiceBase;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -28,26 +25,17 @@ import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 public class CoursesController {
 
     @Inject
-    private CourseManager courseManager;
-
-    @Inject
-    private PeopleManager peopleManager;
+    private CoursesServiceBase courseService;
 
     @POST
     @CheckPermission(permission = Permissions.COURSE_CREATE)
     public Response createCourse(@Context SecurityContext ctx, AddCourseDto addCourseDto) {
-        Person person;
-        try {
-            person = this.peopleManager.getPersonByName(ctx.getUserPrincipal().getName());
-        } catch (Exception e) {
-            return ResponseError.buildResponse(Response.Status.NOT_FOUND, e);
-        }
-
         try {
             return ResponseOK.buildResponse(
                     Response.Status.CREATED,
-                    this.courseManager.addCourse(
-                            addCourseDto.format().toCourseEntity(person)));
+                    this.courseService.addCourse(
+                            addCourseDto,
+                            ctx.getUserPrincipal().getName()));
         } catch (Exception e) {
             return ResponseError.buildResponse(Response.Status.INTERNAL_SERVER_ERROR, e);
         }
