@@ -8,6 +8,8 @@ import com.coursemanagement.src.managers.PeopleManager.PeopleManager;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
+import java.util.List;
+
 @ApplicationScoped
 public class CoursesService implements CoursesServiceBase {
 
@@ -18,13 +20,18 @@ public class CoursesService implements CoursesServiceBase {
     private PeopleManager peopleManager;
 
     @Override
-    public Course addCourse(AddCourseDto addCourseDto, String teacherName) throws Exception {
+    public Course addCourse(AddCourseDto addCourseDto, String userName) throws Exception {
 
-        Person person;
-        person = this.peopleManager.getPersonByName(teacherName);
+        Person person = this.peopleManager.getPersonByName(userName);
         return this.courseManager.addCourse(
                 addCourseDto.format().toCourseEntity(person));
 
+    }
+
+    @Override
+    public List<Course> getCoursesByUserName(String userName) throws Exception {
+        Person person = this.peopleManager.getPersonByName(userName);
+        return this.courseManager.getAllCoursesByUserId(person.getId());
     }
 
 }

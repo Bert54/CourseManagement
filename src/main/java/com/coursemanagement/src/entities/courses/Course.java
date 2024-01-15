@@ -1,6 +1,7 @@
 package com.coursemanagement.src.entities.courses;
 
 import com.coursemanagement.src.entities.people.Person;
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
@@ -16,6 +17,7 @@ public class Course implements Serializable {
 
     @JoinColumn(nullable = false)
     @ManyToOne(fetch=FetchType.LAZY)
+    @JsonbTransient
     private Person teacher;
 
     @Column(nullable = false)
@@ -43,20 +45,39 @@ public class Course implements Serializable {
         return this.id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Person getTeacher() {
         return this.teacher;
+    }
+
+    public void setTeacher(Person teacher) {
+        this.teacher = teacher;
     }
 
     public String getStudentClass() {
         return this.studentClass;
     }
 
+    public void setStudentClass(String studentClass) {
+        this.studentClass = studentClass;
+    }
+
     public String getTitle() {
         return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
         return this.content;
     }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

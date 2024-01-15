@@ -2,10 +2,14 @@ package com.coursemanagement.src.managers.CourseManager;
 
 import com.coursemanagement.src.configuration.EntityManagerProvider;
 import com.coursemanagement.src.entities.courses.Course;
+import com.coursemanagement.src.entities.people.Person;
 import jakarta.enterprise.inject.Default;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+
+import java.util.List;
 
 @Singleton
 @Default
@@ -17,6 +21,7 @@ public class CourseManagerDao implements CourseManager {
 
     @Override
     public Course addCourse(Course course) {
+
         try {
             this.entityManager.getEntityManager().persist(course);
             return course;
@@ -25,4 +30,15 @@ public class CourseManagerDao implements CourseManager {
         }
 
     }
+
+    @Override
+    public List<Course> getAllCoursesByUserId(int userId) {
+        TypedQuery<Course> query = this.entityManager.getEntityManager().createQuery(
+                "SELECT c FROM Course AS c WHERE c.teacher.id = :userId", Course.class
+        ).setParameter("userId", userId);
+
+        return query.getResultList();
+    }
+
+
 }

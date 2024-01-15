@@ -31,7 +31,8 @@ public class Teacher extends Person {
     @Transient
     public List<String> getPermissions() {
         return List.of(
-                Permissions.COURSE_CREATE
+                Permissions.COURSE_CREATE,
+                Permissions.COURSE_FETCH
         );
     }
 }

@@ -31,15 +31,17 @@ public abstract class Person implements Serializable {
     public Person() {
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setId(int id) {
         if (id >= 0) {
             this.id = id;
         }
     }
 
-    public int getId() {
-        return id;
-    }
+
 
     public String getName() {
         return name;
