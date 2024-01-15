@@ -23,6 +23,8 @@ import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("/courses")
 @RequestScoped
+@Consumes(APPLICATION_JSON)
+@Produces(APPLICATION_JSON)
 public class CoursesController {
 
     @Inject
@@ -32,14 +34,11 @@ public class CoursesController {
     private PeopleManager peopleManager;
 
     @POST
-    @Consumes(APPLICATION_JSON)
-    @Produces(APPLICATION_JSON)
     @CheckPermission(permission = Permissions.COURSE_CREATE)
     public Response createCourse(@Context SecurityContext ctx, AddCourseDto addCourseDto) {
-        UserInfo user = (UserInfo) ctx.getUserPrincipal();
         Person person;
         try {
-            person = this.peopleManager.getPersonById(user.getId());
+            person = this.peopleManager.getPersonByName(ctx.getUserPrincipal().getName());
         } catch (Exception e) {
             return ResponseError.buildResponse(Response.Status.NOT_FOUND, e);
         }

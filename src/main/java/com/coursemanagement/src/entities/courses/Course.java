@@ -4,8 +4,10 @@ import com.coursemanagement.src.entities.people.Person;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
+import java.io.Serializable;
+
 @Entity
-public class Course {
+public class Course implements Serializable {
 
     @Column
     @Id
@@ -36,5 +38,25 @@ public class Course {
     }
 
     public Course() {}
+
+    public int getId() {
+        return this.id;
+    }
+
+    public Person getTeacher() {
+        return this.teacher;
+    }
+
+    public String getStudentClass() {
+        return this.studentClass;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public String getContent() {
+        return this.content;
+    }
 
 }
