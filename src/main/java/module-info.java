@@ -5,4 +5,5 @@ module com.coursemanagement {
     requires jakarta.cdi;
     requires jakarta.persistence;
     requires jakarta.transaction;
+    requires org.apache.commons.lang3;
 }

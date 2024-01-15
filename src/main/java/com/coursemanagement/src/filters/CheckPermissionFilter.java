@@ -104,6 +104,7 @@ public class CheckPermissionFilter implements ContainerRequestFilter {
         Authorizer authorizer = new Authorizer(
                 person.getPermissions(),
                 person.getName(),
+                userID,
                 originalContext.isSecure());
         requestContext.setSecurityContext(authorizer);
     }
@@ -111,18 +112,21 @@ public class CheckPermissionFilter implements ContainerRequestFilter {
     private static class Authorizer implements SecurityContext {
 
         protected List<String> roles;
+
+        protected int id;
         protected String username;
         protected boolean isSecure;
 
-        public Authorizer(List<String> roles, final String username, boolean isSecure) {
+        public Authorizer(List<String> roles, final String username, int id, boolean isSecure) {
             this.roles = roles;
             this.username = username;
             this.isSecure = isSecure;
+            this.id = id;
         }
 
         @Override
         public Principal getUserPrincipal() {
-            return new UserInfo(username);
+            return new UserInfo(this.id, this.username);
         }
 
         @Override
@@ -139,17 +143,6 @@ public class CheckPermissionFilter implements ContainerRequestFilter {
         public String getAuthenticationScheme() {
             return "Your Scheme";
         }
-    }
-
-    private static class UserInfo implements Principal {
-        protected String name;
-
-        public UserInfo(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String getName() { return name; }
     }
 
 }

@@ -17,11 +17,15 @@ public abstract class Person implements Serializable {
     private int id;
 
     @Size(min = 1, max = 100)
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String name;
 
     protected Person(String name) {
         this.name = name;
+    }
+
+    protected Person(int id) {
+        this.id = id;
     }
 
     public Person() {

@@ -15,7 +15,7 @@
 
         <properties>
             <property name="hibernate.default_schema" value="public"/>
-<!--            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+<!--            <property name="jakarta.persistence.schema-generation.database.action" value="create"/>-->
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/course_management" />
             <property name="jakarta.persistence.jdbc.user" value="postgres" />

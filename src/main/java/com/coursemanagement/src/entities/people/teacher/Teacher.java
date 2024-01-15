@@ -19,6 +19,10 @@ public class Teacher extends Person {
         super(name);
     }
 
+    public Teacher(int id) {
+        super(id);
+    }
+
     public Teacher() {
         super();
     }
