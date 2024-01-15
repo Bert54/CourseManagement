@@ -1,6 +1,5 @@
 package com.coursemanagement.entities;
 
-import static com.coursemanagement.src.entities.people.Person.NOID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.coursemanagement.src.entities.people.Person;
@@ -25,15 +24,13 @@ public class PersonTest {
     void testId() {
 
         // Test default value
-        assertEquals(NOID, this.person.getId());
+        assertEquals(0, this.person.getId());
 
-        // Can be set
         this.person.setId(0);
         assertEquals(0, this.person.getId());
 
-        // Can NOT be set
         this.person.setId(1);
-        assertEquals(0, this.person.getId());
+        assertEquals(1, this.person.getId());
     }
 
 }

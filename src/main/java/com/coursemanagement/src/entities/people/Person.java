@@ -11,8 +11,6 @@ import jakarta.validation.constraints.Size;
 @DiscriminatorColumn(name = "role", discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Person implements Serializable {
 
-    public static final int NOID = -1;
-
     @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +28,7 @@ public abstract class Person implements Serializable {
     }
 
     public void setId(int id) {
-        if (this.id == NOID && id >= 0) {
+        if (id >= 0) {
             this.id = id;
         }
     }
