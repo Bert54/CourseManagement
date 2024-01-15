@@ -3,4 +3,6 @@ module com.coursemanagement {
     requires jakarta.ws.rs;
     requires jakarta.validation;
     requires jakarta.cdi;
+    requires jakarta.persistence;
+    requires jakarta.transaction;
 }

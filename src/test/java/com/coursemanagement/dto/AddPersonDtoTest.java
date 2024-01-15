@@ -9,7 +9,6 @@ import com.coursemanagement.src.entities.people.teacher.Teacher;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.coursemanagement.src.entities.people.Person.NOID;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -50,7 +49,7 @@ public class AddPersonDtoTest {
                 instanceOf(Student.class)
         );
         assertEquals(gottenPerson.getName(), "natalya");
-        assertEquals(gottenPerson.getId(), NOID);
+        assertEquals(gottenPerson.getId(), 0);
 
         dto = new AddPersonDto("boris", "TEACHER");
         gottenPerson = dto.toPersonEntity();
@@ -59,7 +58,7 @@ public class AddPersonDtoTest {
                 instanceOf(Teacher.class)
         );
         assertEquals(gottenPerson.getName(), "boris");
-        assertEquals(gottenPerson.getId(), NOID);
+        assertEquals(gottenPerson.getId(), 0);
 
         dto = new AddPersonDto("james", "ADMINISTRATOR");
         gottenPerson = dto.toPersonEntity();
@@ -68,7 +67,7 @@ public class AddPersonDtoTest {
                 instanceOf(Administrator.class)
         );
         assertEquals(gottenPerson.getName(), "james");
-        assertEquals(gottenPerson.getId(), NOID);
+        assertEquals(gottenPerson.getId(), 0);
     }
 
     @Test

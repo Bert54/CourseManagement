@@ -2,6 +2,7 @@ package com.coursemanagement.src.managers.PeopleManager;
 
 import com.coursemanagement.src.entities.people.Person;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Alternative;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 @ApplicationScoped
+@Alternative
 public class PeopleManagerList implements PeopleManager {
 
     private final List<Person> registeredPeople;
@@ -26,7 +28,7 @@ public class PeopleManagerList implements PeopleManager {
         });
 
         if (exists.get()) {
-            throw new IllegalStateException(String.format("User with name '%s' already exists", person.getName()));
+            throw new IllegalArgumentException(String.format("User with name '%s' already exists", person.getName()));
         }
 
         person.setId(this.registeredPeople.size());
@@ -47,7 +49,7 @@ public class PeopleManagerList implements PeopleManager {
 
         Person fetchedPerson = fetchedPersonAtomic.get();
         if (fetchedPerson == null) {
-            throw new IllegalStateException(
+            throw new IllegalArgumentException(
                     String.format("User with name '%s' was not found", name)
             );
         }
@@ -63,7 +65,7 @@ public class PeopleManagerList implements PeopleManager {
                 throw new Exception();
             }
         } catch (Exception e) {
-            throw new IllegalStateException(String.format("User with id '%d' was not found", id));
+            throw new IllegalArgumentException(String.format("User with id '%d' was not found", id));
         }
 
         return fetchedPerson;

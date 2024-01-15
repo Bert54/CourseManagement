@@ -21,7 +21,7 @@ public class PeopleController {
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public Response addPerson(AddPersonDto addPersonDto) {
+    public Response addPerson(AddPersonDto addPersonDto) throws Exception {
         try {
             return ResponseOK.buildResponse(
                     Response.Status.CREATED,
@@ -37,11 +37,21 @@ public class PeopleController {
     @GET
     @Produces(APPLICATION_JSON)
     @Path("{id}")
-    public Response getPersonById(@PathParam("id") int id) {
+    public Response getPersonById(@PathParam("id") String idStr) {
         try {
+            int id = Integer.parseInt(idStr);
+
             return ResponseOK.buildResponse(
                     Response.Status.OK,
                     this.peopleManager.getPersonById(id)
+            );
+        } catch (NumberFormatException e) {
+            return ResponseError.buildResponse(Response.Status.BAD_REQUEST,
+                    new IllegalArgumentException(
+                            String.format(
+                                    "'%s' is not a valid id", idStr
+                            )
+                    )
             );
         } catch (Exception e) {
             return ResponseError.buildResponse(Response.Status.NOT_FOUND, e);
