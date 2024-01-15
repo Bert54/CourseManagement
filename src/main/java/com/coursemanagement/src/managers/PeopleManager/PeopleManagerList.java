@@ -28,7 +28,7 @@ public class PeopleManagerList implements PeopleManager {
         });
 
         if (exists.get()) {
-            throw new IllegalStateException(String.format("User with name '%s' already exists", person.getName()));
+            throw new IllegalArgumentException(String.format("User with name '%s' already exists", person.getName()));
         }
 
         person.setId(this.registeredPeople.size());
@@ -49,7 +49,7 @@ public class PeopleManagerList implements PeopleManager {
 
         Person fetchedPerson = fetchedPersonAtomic.get();
         if (fetchedPerson == null) {
-            throw new IllegalStateException(
+            throw new IllegalArgumentException(
                     String.format("User with name '%s' was not found", name)
             );
         }
@@ -65,7 +65,7 @@ public class PeopleManagerList implements PeopleManager {
                 throw new Exception();
             }
         } catch (Exception e) {
-            throw new IllegalStateException(String.format("User with id '%d' was not found", id));
+            throw new IllegalArgumentException(String.format("User with id '%d' was not found", id));
         }
 
         return fetchedPerson;
