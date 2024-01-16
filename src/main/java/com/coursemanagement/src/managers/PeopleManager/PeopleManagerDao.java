@@ -20,6 +20,7 @@ public class PeopleManagerDao implements PeopleManager {
 
     @Override
     public Person addPerson(Person person) throws IllegalArgumentException {
+
         try {
             this.entityManager.getEntityManager().persist(person);
             return person;

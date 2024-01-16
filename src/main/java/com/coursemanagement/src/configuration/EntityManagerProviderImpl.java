@@ -7,17 +7,18 @@ import jakarta.persistence.*;
 public class EntityManagerProviderImpl implements EntityManagerProvider {
 
     @PersistenceUnit
-    private final EntityManagerFactory emfactory;
+    private final EntityManagerFactory emFactory;
+
     @PersistenceContext
-    private final EntityManager entitymanager;
+    private final EntityManager entityManager;
 
     public EntityManagerProviderImpl() {
-        emfactory = Persistence.createEntityManagerFactory("course_management");
-        entitymanager = emfactory.createEntityManager();
+        this.emFactory = Persistence.createEntityManagerFactory("course_management");
+        this.entityManager = this.emFactory.createEntityManager();
     }
 
     @Override
     public EntityManager getEntityManager() {
-        return this.entitymanager;
+        return this.entityManager;
     }
 }
