@@ -16,7 +16,10 @@ public record AddCourseDto(String studentClass, String title, String content) {
         );
     }
 
-    public Course toCourseEntity(Person person) {
+    public Course toCourseEntity(Person person) throws IllegalArgumentException {
+        if (person == null) {
+            throw new IllegalArgumentException("Can't create a new Course with an empty Person");
+        }
         return CourseType.newCourse(this, person);
     }
 

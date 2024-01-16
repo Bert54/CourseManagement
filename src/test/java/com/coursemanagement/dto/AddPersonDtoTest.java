@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AddPersonDtoTest {
 
     @Test
-    @DisplayName("Test method AddPersonDtoTest.format()")
+    @DisplayName("Test method AddPersonDto.format()")
     void testFormat() {
         // Unchanged
         AddPersonDto dto = new AddPersonDto("james", "STUDENT");
@@ -40,7 +40,7 @@ public class AddPersonDtoTest {
     }
 
     @Test
-    @DisplayName("Test method AddPersonDtoTest.toPersonEntity() - OK")
+    @DisplayName("Test method AddPersonDto.toPersonEntity() - OK")
     void testToPersonEntityOK() {
         AddPersonDto dto = new AddPersonDto("natalya", "STUDENT");
         Person gottenPerson = dto.toPersonEntity();
